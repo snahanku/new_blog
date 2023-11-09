@@ -1,0 +1,65 @@
+
+<html>
+    <head>
+       <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .interactive-text {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .interactive-text:hover {
+            color: #0056b3;
+        }
+       </style> 
+</head>
+<body>
+   <br>
+   <br>
+   <br>
+<div>
+{% for value in blog_data %}
+<div class="container">
+<center><p><strong>{{value.blog_title}}</strong></p></center>
+<p>{{value.blog_content}}</p>
+ <a href="{% url 'update' value.id %}">Update</a>
+ <br>
+ <br>
+ <form action={% url 'delete' value.id %}  method="post">
+ {% csrf_token %}
+    <input type="submit" value="delete" id="delete">
+ </form>
+ </form>
+</div>
+<br>
+{% endfor %}
+ </div>
+</body>
+</html>
